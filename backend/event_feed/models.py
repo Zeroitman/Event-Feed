@@ -5,7 +5,8 @@ from django.db import models
 class Achievement(models.Model):
     name = models.CharField(max_length=30)
     condition = models.TextField()
-    icon = models.ImageField()
+    icon = models.ImageField(upload_to='achievements/')
+
 
 
 class User(AbstractBaseUser):
@@ -28,6 +29,6 @@ class Note(models.Model):
 class Advertisement(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=225)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='advertisements/')
     url = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
