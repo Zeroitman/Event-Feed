@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Applications
-    'general'
+    'event_feed'
 ]
 
 MIDDLEWARE = [

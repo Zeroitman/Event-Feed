@@ -1,5 +1,5 @@
 from django.contrib import admin
-from general.models import Note, Achievement, Advertisement
+from event_feed.models import Note, Achievement, Advertisement
 
 
 admin.site.register(Note)
