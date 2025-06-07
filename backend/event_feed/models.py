@@ -2,9 +2,18 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 
 
+class Achievement(models.Model):
+    name = models.CharField(max_length=30)
+    condition = models.TextField()
+    icon = models.ImageField()
+
+
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    achievements = models.ManyToManyField(
+        Achievement, related_name='users', blank=True
+    )
 
 
 class Note(models.Model):
@@ -12,14 +21,8 @@ class Note(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     crated_by = models.ForeignKey(
-        "User", on_delete=models.CASCADE, verbose_name="created by"
+        User, on_delete=models.CASCADE, verbose_name="created by"
     )
-
-
-class Achievement(models.Model):
-    name = models.CharField(max_length=30)
-    condition = models.TextField()
-    icon = models.ImageField()
 
 
 class Advertisement(models.Model):
