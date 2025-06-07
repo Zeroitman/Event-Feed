@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import UserManager, PermissionsMixin
 from django.db import models
 
 
@@ -8,8 +9,25 @@ class Achievement(models.Model):
     icon = models.ImageField(upload_to='achievements/')
 
 
+class UserDjango(PermissionsMixin, AbstractBaseUser):
+    password = models.CharField(max_length=128, blank=True, null=True)
+    username = models.CharField(max_length=40, unique=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
-class User(AbstractBaseUser):
+    objects = UserManager()
+
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        abstract = True
+
+
+class User(UserDjango):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     achievements = models.ManyToManyField(
