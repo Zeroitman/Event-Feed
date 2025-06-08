@@ -49,21 +49,16 @@ class EventFeedAPIView(APIView):
 
     def get(self, request, *args, **kwargs):
         lookup_value = self.kwargs.get(self.lookup_field)
-
         user = get_object_or_404(
             self.queryset, **{self.lookup_field: lookup_value}
         )
 
         query = self.request.query_params
-        event_type = query.get("type", "")
-        search = query.get("search", "")
-
-        internal_models = [Note, Advertisement, Achievement]
         data = get_event_feed(
-            models=internal_models,
+            models=[Note, Advertisement, Achievement],
             user_id=user.id,
-            event_type=event_type,
-            search=search
+            event_type=query.get("type", ""),
+            search=query.get("search", "")
         )
         serializer_data = self.serializer_class(data, many=True).data
         paginator = self.pagination_class()
