@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Achievement(models.Model):
-    name = models.CharField(max_length=30)
+    title = models.CharField(max_length=30)
     condition = models.TextField()
     icon = models.ImageField(upload_to='achievements/')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class UserDjango(PermissionsMixin, AbstractBaseUser):
@@ -39,14 +40,14 @@ class Note(models.Model):
     title = models.CharField(max_length=30)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    crated_by = models.ForeignKey(
+    created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="created by"
     )
 
 
 class Advertisement(models.Model):
     title = models.CharField(max_length=30)
-    description = models.CharField(max_length=225)
+    description = models.TextField()
     image = models.ImageField(upload_to='advertisements/')
     url = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
