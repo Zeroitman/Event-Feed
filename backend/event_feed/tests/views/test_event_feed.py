@@ -66,7 +66,7 @@ class TestEventFeedView(TestCase):
         response = self.client.get(reverse(
             viewname="event_feed:list",
             kwargs={"pk": self.user_vasya.pk}
-        ), query_params={"type": "achievement"})
+        ), query_params={"type": "userachievement"})
         response_data = response.json()
         self.assertEqual(response_data["count"], expected_result)
         self.assertEqual(response.status_code, 200)

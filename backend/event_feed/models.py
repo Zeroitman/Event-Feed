@@ -32,8 +32,20 @@ class User(UserDjango):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     achievements = models.ManyToManyField(
-        Achievement, related_name='users', blank=True
+        Achievement,
+        through='UserAchievement',
+        related_name='users',
+        blank=True
     )
+
+
+class UserAchievement(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    achievement = models.ForeignKey("Achievement", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "achievement")
 
 
 class Note(models.Model):
