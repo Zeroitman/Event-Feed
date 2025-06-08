@@ -12,7 +12,7 @@ class Achievement(models.Model):
 class UserDjango(PermissionsMixin, AbstractBaseUser):
     password = models.CharField(max_length=128, blank=True, null=True)
     username = models.CharField(max_length=40, unique=True)
-    email = models.EmailField(unique=True, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
