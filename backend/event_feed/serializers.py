@@ -2,7 +2,7 @@ from enum import Enum
 from rest_framework import serializers
 
 
-class Entyty(Enum):
+class Entity(Enum):
     Note = "note"
     Advertisement = "advertisement"
     Achievement = "achievement"
@@ -12,6 +12,6 @@ class EventFeedSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     title = serializers.CharField()
     entity = serializers.ChoiceField(
-        choices=[e.value for e in Entyty]
+        choices=[e.value for e in Entity]
     )
     created_at = serializers.DateTimeField()

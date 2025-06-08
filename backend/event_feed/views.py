@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from event_feed.models import Note, Advertisement, Achievement, User
 from typing import List, Type, Dict
 from django.db.models import Model, CharField, Value
-from event_feed.serializers import EventFeedSerializer
+from event_feed.serializers import EventFeedSerializer, Entity
 
 
 def get_event_feed(
@@ -14,17 +14,21 @@ def get_event_feed(
         event_type: str,
         search: str
 ) -> List[Dict]:
-    print(user_id)
     result_list = []
 
     for model in models:
+        entity_name = model.__name__.lower()
         records = model.objects.annotate(
             entity=Value(
-                model.__name__.lower(),
+                entity_name,
                 output_field=CharField()
             )
         ).order_by('-created_at').values('entity', 'id', 'created_at', 'title')
-        print(records)
+
+        if entity_name == Entity.Note.value:
+            records = records.filter(created_by=user_id)
+        elif entity_name == Entity.Achievement.value:
+            records = records.filter(users__id=user_id)
 
         if event_type:
             records = records.filter(entity__in=['advertisement', event_type])
