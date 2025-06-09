@@ -104,3 +104,10 @@ class TestEventFeedView(TestCase):
         response_data = response.json()
         self.assertEqual(response_data["count"], expected_result)
         self.assertEqual(response.status_code, 200)
+
+    def test_user_petya_get_event_feed_filter_by_wrong(self):
+        response = self.client.get(reverse(
+            viewname="event_feed:list",
+            kwargs={"pk": self.user_petya.pk}
+        ), query_params={"event_type": "wrong"})
+        self.assertEqual(response.status_code, 400)

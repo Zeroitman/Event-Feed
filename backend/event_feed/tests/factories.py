@@ -24,7 +24,7 @@ class NoteFactory(factory.django.DjangoModelFactory):
         model = Note
 
     title = factory.Sequence(lambda n: f"Note {n}")
-    body = factory.Faker("text", max_nb_chars=20)
+    body = "Test Note Body"
     created_by = factory.SubFactory(UserFactory)
 
 
@@ -33,7 +33,7 @@ class AdvertisementFactory(factory.django.DjangoModelFactory):
         model = Advertisement
 
     title = factory.Sequence(lambda n: f"Advertisement {n}")
-    description = factory.Faker("text", max_nb_chars=20)
+    description = "Test Advertisement Desc"
     image = factory.django.ImageField()
     url = factory.Faker("url")
 
