@@ -18,7 +18,7 @@ Before running the project locally you should have Postgres and created a databa
 3. CREATE DATABASE db_name; # Create a database for the project
 4. CREATE USER myuser WITH PASSWORD 'mypassword'; # Create a new user
 5. GRANT ALL PRIVILEGES ON DATABASE db_name TO myuser; # Grant the user rights to your database
-6. ALTER USER lc_user CREATEDB; # Allow the user to create a database, which will be needed for tests;
+6. ALTER USER myuser CREATEDB; # Allow the user to create a database, which will be needed for tests;
 ```
 
 To run the project locally, follow these instructions:
