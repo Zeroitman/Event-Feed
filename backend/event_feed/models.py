@@ -9,6 +9,9 @@ class Achievement(models.Model):
     icon = models.ImageField(upload_to='achievements/')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class UserDjango(PermissionsMixin, AbstractBaseUser):
     password = models.CharField(max_length=128, blank=True, null=True)

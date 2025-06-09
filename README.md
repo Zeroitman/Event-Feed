@@ -30,8 +30,8 @@ To run the project locally, follow these instructions:
 5. poetry env activate # command that will show which command should be executed to activate the created virtual environment
 6. Run the command output
 7. ./manage.py migrate # performs migrations
-8. ./manage.py seed # loads seeds
-9. ./manage.py runerver # launches the project
+8. ./manage.py seed # loads seeds, superuser will be added with admin/admin
+9. ./manage.py runserver # launches the project
 ```
 In the project, the functionality of the event feed with various cases is covered by tests. To run the tests, run the command
 ```
