@@ -15,8 +15,9 @@ class Entity(Enum):
 
 class EventFeedQueryParamSerializer(serializers.Serializer):
     event_type = serializers.ChoiceField(
-        choices=[e.value for e in QueryEntity]
+        choices=[e.value for e in QueryEntity], required=False
     )
+    search = serializers.CharField(required=False)
 
 
 class EventFeedSerializer(serializers.Serializer):

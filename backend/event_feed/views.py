@@ -30,7 +30,8 @@ class EventFeedAPIView(APIView):
             self.queryset, **{self.lookup_field: lookup_value}
         )
 
-        query = self.request.query_params
+        query = self.query_serializer(data=self.request.query_params)
+        query.is_valid(raise_exception=True)
 
         models = dict()
         for model in [Note, Advertisement, UserAchievement]:
@@ -39,8 +40,8 @@ class EventFeedAPIView(APIView):
         data = get_event_feed(
             models=models,
             user_id=user.id,
-            event_type=query.get("event_type", ""),
-            search=query.get("search", "")
+            event_type=query.validated_data.get("event_type", ""),
+            search=query.validated_data.get("search", "")
         )
         serializer_data = self.serializer_class(data, many=True).data
         paginator = self.pagination_class()
