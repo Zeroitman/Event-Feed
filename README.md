@@ -1,4 +1,5 @@
 # DRF Event Feed Backend
+**[LS_test_task](https://github.com/Zeroitman/LS_test_task)**
 
 # About the project 
 Project for receiving personal feed with events
@@ -23,15 +24,18 @@ Before running the project locally you should have Postgres and created a databa
 
 To run the project locally, follow these instructions:
 ```
-1. cp .env.example backend/.env # Copy environment variables to the project backend folder
-2. Make sure that the environment variables in the .env file match the values ​​you specified when creating the DB for the project
-3. cd backend # go to the project folder
-4. poetry install # install project dependencies and automatically install the environment
-5. poetry env activate # command that will show which command should be executed to activate the created virtual environment
-6. Run the command output
-7. ./manage.py migrate # performs migrations
-8. ./manage.py seed # loads seeds, superuser will be added with admin/admin
-9. ./manage.py runserver # launches the project
+1. git clone # clone project
+2. cd LS_test_task # open project folder
+3. cp .env.example backend/.env # Copy environment variables to the project backend folder
+4. Make sure that the environment variables in the .env file match the values ​​you specified when creating the DB for the project
+5. cd backend # go to the project folder
+6. poetry install # install project dependencies and automatically install the environment
+7. poetry env activate # command that will show which command should be executed to activate the created virtual environment
+8. Run the command output for activate virtual environment
+9. ./manage.py migrate # performs migrations
+10. ./manage.py seed # loads seeds, superuser will be added with admin/admin
+11. ./manage.py test # run test (not required)
+12. ./manage.py runserver # launches the project
 ```
 In the project, the functionality of the event feed with various cases is covered by tests. To run the tests, run the command
 ```
