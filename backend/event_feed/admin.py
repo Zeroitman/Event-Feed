@@ -1,4 +1,7 @@
 from django.contrib import admin
+from event_feed.form.user_achievement import (
+    UserAchievementAdminForm, UserNoteAdminForm
+)
 from event_feed.models import (
     Note, Advertisement, UserAchievement, Achievement
 )
@@ -18,11 +21,13 @@ class AdvertisementAdmin(admin.ModelAdmin):
 
 @admin.register(Note)
 class UserNoteAdmin(admin.ModelAdmin):
+    form = UserNoteAdminForm
     list_display = ("created_by", "title", "created_at")
     list_filter = ("created_at",)
 
 
 @admin.register(UserAchievement)
 class UserAchievementAdmin(admin.ModelAdmin):
+    form = UserAchievementAdminForm
     list_display = ("user", "achievement", "created_at")
     list_filter = ("created_at",)
