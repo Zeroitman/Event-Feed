@@ -19,11 +19,15 @@ class TestEventFeedView(TestCase):
 
         # data for user vasya
         cls.user_vasya = UserFactory(achievements=cls.achievements)
-        cls.notes_vasya = NoteFactory.create_batch(2, created_by=cls.user_vasya)
+        cls.notes_vasya = NoteFactory.create_batch(
+            2, created_by=cls.user_vasya
+        )
 
         # data for user petya
         cls.user_petya = UserFactory(achievements=[cls.achievement])
-        cls.notes_petya = NoteFactory.create_batch(4, created_by=cls.user_petya)
+        cls.notes_petya = NoteFactory.create_batch(
+            4, created_by=cls.user_petya
+        )
 
     def test_staff_user_return_404(self):
         staff_user = UserFactory(is_staff=True)

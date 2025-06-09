@@ -13,10 +13,10 @@ class Command(BaseCommand):
         User.objects.create_superuser(
             username="admin", password="admin"
         )
-        vasya = User.objects.create_user(
+        User.objects.create_user(
             username="vasya", first_name="Vasya", last_name="Petrov"
         )
-        petya = User.objects.create_user(
+        User.objects.create_user(
             username="petya", first_name="Petya", last_name="Ivanov"
         )
 

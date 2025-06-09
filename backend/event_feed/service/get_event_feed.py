@@ -15,7 +15,11 @@ def get_event_feed(
                 entity_name,
                 output_field=CharField()
             ),
-            head=F('achievement__title') if 'achievement' in fields else F('title')
+            head=(
+                F('achievement__title')
+                if 'achievement' in fields
+                else F('title')
+            )
         ).order_by('-created_at')
 
         if entity_name == Entity.Note.value:
