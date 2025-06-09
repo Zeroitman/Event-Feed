@@ -15,7 +15,7 @@ def get_event_feed(
                 entity_name,
                 output_field=CharField()
             ),
-            head=(
+            common_title=(
                 F('achievement__title')
                 if 'achievement' in fields
                 else F('title')
@@ -32,7 +32,7 @@ def get_event_feed(
                 Entity.Advertisement.value, event_type
             ])
         if search:
-            records = records.filter(head__icontains=search)
+            records = records.filter(common_title__icontains=search)
 
         result_list += list(records)
     return sorted(result_list, key=lambda x: x.created_at, reverse=True)

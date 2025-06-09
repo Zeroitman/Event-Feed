@@ -22,7 +22,7 @@ class EventFeedQueryParamSerializer(serializers.Serializer):
 
 class EventFeedSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    title = serializers.CharField(source='head')
+    title = serializers.CharField(source='common_title')
     entity = serializers.ChoiceField(
         choices=[e.value for e in Entity]
     )
