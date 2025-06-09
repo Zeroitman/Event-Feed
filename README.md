@@ -37,4 +37,14 @@ In the project, the functionality of the event feed with various cases is covere
 ```
 ./manage.py test
 ```
+During development, pays attention to the quality of the code. Flake8 is installed in the project. Run the command
+```
+poetry run flake8
+```
+drf-spectacular is connected, which automatically generates API documentation in OpenAPI 3.0 format, in which you can test the functionality and view the structure of the request and response.
+```
+host:port/docs/redoc/ # structure in the request and response
+host:port/docs/swagger/ # test and make requests
+host:port/docs/schema/ # get the schema
+```
 

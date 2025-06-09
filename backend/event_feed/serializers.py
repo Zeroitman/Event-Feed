@@ -2,10 +2,21 @@ from enum import Enum
 from rest_framework import serializers
 
 
+class QueryEntity(Enum):
+    Note = "note"
+    UserAchievement = "userachievement"
+
+
 class Entity(Enum):
     Note = "note"
+    UserAchievement = "userachievement"
     Advertisement = "advertisement"
-    Achievement = "userachievement"
+
+
+class EventFeedQueryParamSerializer(serializers.Serializer):
+    event_type = serializers.ChoiceField(
+        choices=[e.value for e in QueryEntity]
+    )
 
 
 class EventFeedSerializer(serializers.Serializer):

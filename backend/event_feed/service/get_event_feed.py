@@ -24,11 +24,13 @@ def get_event_feed(
 
         if entity_name == Entity.Note.value:
             records = records.filter(created_by=user_id)
-        elif entity_name == Entity.Achievement.value:
+        elif entity_name == Entity.UserAchievement.value:
             records = records.filter(user_id=user_id)
 
         if event_type:
-            records = records.filter(entity__in=['advertisement', event_type])
+            records = records.filter(entity__in=[
+                Entity.Advertisement.value, event_type
+            ])
         if search:
             records = records.filter(head__icontains=search)
 
