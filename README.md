@@ -1,8 +1,20 @@
 # DRF Event Feed Backend
-**[LS_test_task](https://github.com/Zeroitman/LS_test_task)**
-
 # About the project 
-Project for receiving personal feed with events
+Mini API project with a personal feed consisting of the following types of events:
+1. User wrote note A.
+2. User received achievement B.
+3. Advertisement.
+
+User should not see notes and achievements of another user.
+Client should receive the feed with one GET request:
+
+1. Events should be sorted by creation time.
+2. The request should support pagination.
+3. The request should support searching by titles.
+4. The request should support filtering by event type, while
+advertisements should be displayed with any filtering if they get to the page.
+
+The feed should contain events of only one user, whose ID is specified in the request. It is not necessary to make an authorization system for requesting a feed. You can leave AllowAny and pass the user ID for simplicity.
 
 ## Stack
 
